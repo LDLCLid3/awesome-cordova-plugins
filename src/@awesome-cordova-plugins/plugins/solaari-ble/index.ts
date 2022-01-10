@@ -124,14 +124,14 @@ export interface Characteristic {
  * ```
  */
 @Plugin({
-  pluginName: 'SolaariBle',
-  plugin: '', // npm package name, example: cordova-plugin-camera
-  pluginRef: '', // the variable reference to call the plugin, example: navigator.geolocation
-  repo: '', // the github repository URL for the plugin
+  pluginName: 'Solaari-ble',
+  plugin: 'cordova-plugin-solaari-ble', // npm package name, example: cordova-plugin-camera
+  pluginRef: 'solaarible', // the variable reference to call the plugin, example: navigator.geolocation
+  repo: 'https://github.com/LDLCLid3/cordova-plugin-solaari-ble', // the github repository URL for the plugin
   platforms: ['Android', 'iOS'], // Array of platforms supported, example: ['Android', 'iOS']
 })
 @Injectable()
-export class SolaariBle extends AwesomeCordovaNativePlugin {
+export class SolaariBLE extends AwesomeCordovaNativePlugin {
   /**
    * Scan and discover BLE peripherals for the specified amount of time.
    *
