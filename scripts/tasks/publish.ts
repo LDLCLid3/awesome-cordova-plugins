@@ -14,15 +14,15 @@ const VERSION = MAIN_PACKAGE_JSON.version;
 const FLAGS = '--access public';
 
 const PACKAGE_JSON_BASE = {
-  description: 'Awesome Cordova Plugins - Native plugins for ionic apps',
+  description: 'Solaari Cordova Plugins - Native plugins for Solaari app',
   main: 'bundle.js',
   module: 'index.js',
   typings: 'index.d.ts',
-  author: 'ionic',
+  author: 'Alan Georges <a.georges@ldlc.com>',
   license: 'MIT',
   repository: {
     type: 'git',
-    url: 'https://github.com/danielsogl/awesome-cordova-plugins.git',
+    url: 'https://github.com/LDLCLid3/solaari-cordova-plugins',
   },
 };
 
@@ -40,7 +40,7 @@ const PLUGIN_PEER_DEPENDENCIES = {
 
 function getPackageJsonContent(name: string, peerDependencies = {}, dependencies = {}) {
   return merge(PACKAGE_JSON_BASE, {
-    name: '@awesome-cordova-plugins/' + name,
+    name: name,
     dependencies,
     peerDependencies,
     version: VERSION,
@@ -57,11 +57,11 @@ function writeNGXPackageJson(data: any, dir: string) {
   writeJSONSync(filePath, data);
 }
 function prepare() {
-  // write @awesome-cordova-plugins/core package.json
+  /* // write @awesome-cordova-plugins/core package.json
   writePackageJson(
     getPackageJsonContent('core', { rxjs: RXJS_VERSION }, { '@types/cordova': 'latest' }),
     resolve(DIST, 'core')
-  );
+  ); */
 
   // write plugin package.json files
   PLUGIN_PATHS.forEach((pluginPath: string) => {

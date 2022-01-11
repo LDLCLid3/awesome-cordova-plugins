@@ -67,6 +67,8 @@ export interface InitializeResult {
 }
 
 export interface Characteristic {
+  /* Array of descriptors */
+  descriptors?: Descriptor[];
   /**  Characteristic's uuid */
   uuid: string;
   /**
@@ -103,6 +105,10 @@ export interface Characteristic {
   };
 }
 
+export interface Descriptor {
+  uuid: string;
+}
+
 /**
  * @name SolaariBle
  * @description
@@ -124,9 +130,9 @@ export interface Characteristic {
  * ```
  */
 @Plugin({
-  pluginName: 'Solaari-ble',
+  pluginName: 'SolaariBLE',
   plugin: 'cordova-plugin-solaari-ble', // npm package name, example: cordova-plugin-camera
-  pluginRef: 'solaarible', // the variable reference to call the plugin, example: navigator.geolocation
+  pluginRef: 'SolaariBLE', // the variable reference to call the plugin, example: navigator.geolocation
   repo: 'https://github.com/LDLCLid3/cordova-plugin-solaari-ble', // the github repository URL for the plugin
   platforms: ['Android', 'iOS'], // Array of platforms supported, example: ['Android', 'iOS']
 })
@@ -599,7 +605,7 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @param {InitPeripheralParams} [params]
    * @returns {Observable<InitializeResult>}
    */
-  @Cordova({ callbackOrder: 'reverse', observable: true })
+  @Cordova({ observable: true })
   initializePeripheral(): Observable<InitializeResult> {
     return;
   }
@@ -612,7 +618,7 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @param {{ service: string, characteristics: Characteristic[] }} params
    * @returns {Promise<{ service: string, status: Status }>}
    */
-  @Cordova({ callbackOrder: 'reverse' })
+  @Cordova()
   addService(serviceUUID: string, characteristics: Characteristic[]): Promise<{ service: string; status: Status }> {
     return;
   }
@@ -623,7 +629,7 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @param serviceUUID
    * @returns {Promise<{ service: string, status: Status }>}
    */
-  @Cordova({ callbackOrder: 'reverse' })
+  @Cordova()
   removeService(serviceUUID: string): Promise<{ service: string; status: Status }> {
     return;
   }
@@ -633,7 +639,7 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * Remove all services
    * @returns {Promise<{ status: Status }>}
    */
-  @Cordova({ callbackOrder: 'reverse' })
+  @Cordova()
   removeAllServices(): Promise<{ status: Status }> {
     return;
   }
@@ -647,10 +653,11 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @param deviceAddress
    * @returns {Promise<{ status: Status }>}
    */
+  /* 
   @Cordova({ callbackOrder: 'reverse' })
   respond(requestId: number, value: ArrayBuffer, offset: number, deviceAddress: string): Promise<{ status: Status }> {
     return;
-  }
+  } */
 
   /**
    * @name notify
@@ -660,15 +667,15 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @param serviceUUID
    * @param characteristicUUID
    * @param value
-   * @param deviceAddress
+   * @param deviceAddress only on Android
    * @returns {Promise<{ status: Status, sent: boolean }>}
    */
-  @Cordova({ callbackOrder: 'reverse' })
+  @Cordova()
   notify(
     serviceUUID: string,
     characteristicUUID: string,
     value: ArrayBuffer,
-    deviceAddress: string
+    deviceAddress?: string
   ): Promise<{ status: Status; sent: boolean }> {
     return;
   }
