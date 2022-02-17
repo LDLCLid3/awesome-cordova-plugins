@@ -619,18 +619,7 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @returns {Promise<{ service: string, status: Status }>}
    */
   @Cordova()
-  addService(serviceUUID: string, characteristics: Characteristic[]): Promise<{ service: string; status: Status }> {
-    return;
-  }
-
-  /**
-   * @name removeService
-   * Remove a service
-   * @param serviceUUID
-   * @returns {Promise<{ service: string, status: Status }>}
-   */
-  @Cordova()
-  removeService(serviceUUID: string): Promise<{ service: string; status: Status }> {
+  addService(serviceUUID: string, characteristics: Characteristic[]): Promise<void> {
     return;
   }
 
@@ -640,7 +629,7 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @returns {Promise<{ status: Status }>}
    */
   @Cordova()
-  removeAllServices(): Promise<{ status: Status }> {
+  removeAllServices(): Promise<void> {
     return;
   }
 
@@ -671,12 +660,27 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @returns {Promise<{ status: Status, sent: boolean }>}
    */
   @Cordova()
-  notify(
-    serviceUUID: string,
-    characteristicUUID: string,
-    value: ArrayBuffer,
-    deviceAddress?: string
-  ): Promise<{ status: Status; sent: boolean }> {
+  notify(serviceUUID: string, characteristicUUID: string, value: ArrayBuffer, deviceAddress?: string): Promise<void> {
+    return;
+  }
+
+  /**
+   * @name startStatePermissions
+   * only on ANDROID
+   * Register Permissions state. Send "PERMISSIONS_DENIED or PERMISSIONS_GRANTED"
+   */
+  @Cordova({ observable: true })
+  startStatePermissions(): Observable<string> {
+    return;
+  }
+
+  /**
+   * @name requestPermissions
+   * only on ANDROID
+   * Ask permissions to user
+   */
+  @Cordova()
+  requestPermissions(): Promise<void> {
     return;
   }
 }
