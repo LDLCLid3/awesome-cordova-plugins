@@ -605,8 +605,8 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @param {InitPeripheralParams} [params]
    * @returns {Observable<InitializeResult>}
    */
-  @Cordova({ observable: true })
-  initializePeripheral(): Observable<InitializeResult> {
+  @Cordova()
+  initializePeripheral(): Promise<void> {
     return;
   }
 
@@ -657,7 +657,7 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @param characteristicUUID
    * @param value
    * @param deviceAddress only on Android
-   * @returns {Promise<{ status: Status, sent: boolean }>}
+   * @returns {Promise<void>}
    */
   @Cordova()
   notify(serviceUUID: string, characteristicUUID: string, value: ArrayBuffer, deviceAddress?: string): Promise<void> {
@@ -681,6 +681,16 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    */
   @Cordova()
   requestPermissions(): Promise<void> {
+    return;
+  }
+
+  /**
+   * @name registerPeripheralStatus
+   * only on ANDROID
+   * Register PeripheralStatus"
+   */
+  @Cordova({ observable: true })
+  registerPeripheralStatus(): Observable<any> {
     return;
   }
 }
