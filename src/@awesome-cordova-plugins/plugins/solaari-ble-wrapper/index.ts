@@ -66,6 +66,12 @@ export interface InitializeResult {
   value: string;
 }
 
+export enum CONNECTION_PRIORITY {
+  CONNECTION_PRIORITY_BALANCED,
+  CONNECTION_PRIORITY_HIGH,
+  CONNECTION_PRIORITY_LOW_POWER,
+}
+
 export interface Characteristic {
   /* Array of descriptors */
   descriptors?: Descriptor[];
@@ -314,6 +320,18 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    */
   @Cordova()
   requestMtu(deviceId: string, mtuSize: number): Promise<any> {
+    return;
+  }
+
+  /**
+   * Request Connection Priority on Peripheral. Android only
+   *
+   * @param {string} deviceId UUID or MAC address of the peripheral
+   * @param connectionPriority The connection Priority based on Android model (BALANCED = 0, HIGH = 1, LOW LATENCY = 2)
+   * @returns {Promise<void>} Returns a Promise.
+   */
+  @Cordova()
+  requestConnectionPriority(deviceId: string, connectionPriority: CONNECTION_PRIORITY): Promise<void> {
     return;
   }
 
