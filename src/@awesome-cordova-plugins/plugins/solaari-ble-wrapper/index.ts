@@ -45,7 +45,8 @@ export type Status =
   | 'advertisingStopped'
   | 'responded'
   | 'notified'
-  | 'notificationSent';
+  | 'notificationSent'
+  | 'responseSended';
 
 export enum CONNECTION_PRIORITY {
   CONNECTION_PRIORITY_BALANCED,
@@ -225,28 +226,6 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
   }
 
   /**
-   * Set device pin.
-   *
-   * @usage
-   * ```
-   *   BLE.setPin(pin).subscribe(success => {
-   *     console.log(success);
-   *   },
-   *   failure => {
-   *     console.log('failure');
-   *   });
-   * ```
-   * @param {string} pin Pin of the device as a string
-   * @returns {Observable<any>} Returns an Observable that notifies of success/failure.
-   */
-  @Cordova({
-    observable: true,
-  })
-  setPin(pin: string): Observable<any> {
-    return;
-  }
-
-  /**
    * Connect to a peripheral.
    *
    * @usage
@@ -376,19 +355,6 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
   }
 
   /**
-   * Read the value of a characteristic.
-   *
-   * @param {string} deviceId  UUID or MAC address of the peripheral
-   * @param {string} serviceUUID  UUID of the BLE service
-   * @param {string} characteristicUUID  UUID of the BLE characteristic
-   * @returns {Promise<any>} Returns a Promise
-   */
-  @Cordova()
-  read(deviceId: string, serviceUUID: string, characteristicUUID: string): Promise<any> {
-    return;
-  }
-
-  /**
    * Write the value of a characteristic.
    *
    * @usage
@@ -415,29 +381,10 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @param {string} serviceUUID  UUID of the BLE service
    * @param {string} characteristicUUID  UUID of the BLE characteristic
    * @param {ArrayBuffer} value  Data to write to the characteristic, as an ArrayBuffer.
-   * @returns {Promise<any>} Returns a Promise
+   * @returns {Promise<void>} Returns a Promise
    */
   @Cordova()
-  write(deviceId: string, serviceUUID: string, characteristicUUID: string, value: ArrayBuffer): Promise<any> {
-    return;
-  }
-
-  /**
-   * Write the value of a characteristic without waiting for confirmation from the peripheral.
-   *
-   * @param {string} deviceId  UUID or MAC address of the peripheral
-   * @param {string} serviceUUID  UUID of the BLE service
-   * @param {string} characteristicUUID  UUID of the BLE characteristic
-   * @param {ArrayBuffer} value  Data to write to the characteristic, as an ArrayBuffer.
-   * @returns {Promise<any>} Returns a Promise
-   */
-  @Cordova()
-  writeWithoutResponse(
-    deviceId: string,
-    serviceUUID: string,
-    characteristicUUID: string,
-    value: ArrayBuffer
-  ): Promise<any> {
+  write(deviceId: string, serviceUUID: string, characteristicUUID: string, value: ArrayBuffer): Promise<void> {
     return;
   }
 
@@ -595,17 +542,6 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
   }
 
   /**
-   * Find the bonded devices
-   * Android only
-   *
-   * @returns {Promise<any>} Returns a promise with a list of peripheral objects
-   */
-  @Cordova()
-  bondedDevices(): Promise<any[]> {
-    return;
-  }
-
-  /**
    * Reports if location services are enabled.
    * Android only
    *
@@ -686,15 +622,28 @@ export class SolaariBLE extends AwesomeCordovaNativePlugin {
    * @param characteristicUUID
    * @param value
    * @param deviceAddress only on Android
-   * @returns {Promise<{ status: Status, sent: boolean }>}
+   * @returns {Promise<any>}
    */
   @Cordova()
-  notify(
-    serviceUUID: string,
-    characteristicUUID: string,
-    value: ArrayBuffer,
-    deviceAddress?: string
-  ): Promise<{ status: Status; sent: boolean }> {
+  notify(serviceUUID: string, characteristicUUID: string, value: ArrayBuffer, deviceAddress?: string): Promise<any> {
+    return;
+  }
+
+  /**
+   * @name startPeripheralNotificationMonitoring
+   * @returns {Observable<any>}
+   */
+  @Cordova({ observable: true })
+  startPeripheralNotificationMonitoring(): Observable<any> {
+    return;
+  }
+
+  /**
+   * @name stopPeripheralNotificationMonitoring()
+   * @returns {Promise<void>}
+   */
+  @Cordova()
+  stopPeripheralNotificationMonitoring(): Promise<void> {
     return;
   }
 }
